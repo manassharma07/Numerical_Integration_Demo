@@ -79,12 +79,16 @@ n = st.number_input("Number of subintervals", value=3, max_value=1000, step=1)
 # Plot the function and highlight the area under the curve according to the limits entered
 x = np.linspace(a, b, n+1)
 y = f(x)
+x_actual_func = np.linspace(a, b, 500)
+y_actual_func = f(x_actual_func)
 fig, ax = plt.subplots()
-ax.plot(x, y, 'b', linewidth=2)
+ax.plot(x, y, 'b', linewidth=2, label='Trapezoidal Rule Approximation')
+ax.plot(x_actual_func, y_actual_func, color='brown', linestyle='dashed', linewidth=0.7, label='Actual Function')
 ax.fill_between(x, y, where=(x>=a)&(x<=b), color='grey', alpha=0.3)
 ax.set_xlabel('x')
 ax.set_ylabel('y')
 ax.set_title('Area under the curve')
+ax.legend(loc='upper right')
 
 # Plot the sub-intervals
 for i in range(n):
